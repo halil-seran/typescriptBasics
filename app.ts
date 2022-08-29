@@ -1,34 +1,29 @@
-type Combinable = number | string;
-type ConversionDescriptor = "as-number" | "as-text";
-
-function combine(
-  input1: Combinable,
-  input2: Combinable,
-  resultConversion: ConversionDescriptor
-) {
-  // we can add more than two | boolean | obj vs vs
-  let result;
-  if (
-    (typeof input1 === "number" && typeof input2 === "number") ||
-    resultConversion === "as-number"
-  ) {
-    result = +input1 + +input2;
-  } else {
-    result = input1.toString() + input2.toString();
-  }
-  return result;
-  // if (resultConversion === "as-number") {
-  //   return +result; //+result = parseFloat(result);
-  // } else {
-  //   return result.toString();
-  // }
+function add(n1: number, n2: number) {
+  return n1 + n2;
 }
 
-const combineAges = combine(30, 25, "as-number");
-console.log(combineAges);
+function printResult(num: number): void {
+  // void means this func doesnt have return statement
+  console.log("Result: " + num);
+}
 
-const combineStringAges = combine("30", "25", "as-number");
-console.log(combineStringAges);
+function printResult2(num: number): undefined {
+  // this is very rare, almost same with upside func.
+  //
+  console.log("Result: " + num);
+  return;
+}
 
-const combineNames = combine("Halil", "Ummuhan", "as-text");
-console.log(combineNames);
+printResult(add(5, 12));
+
+//let value: undefined; // undefined is also an variable
+
+// let combineValues: Function;
+let combineValues: (a: number, b: number) => number;
+// burada combineValuesi ozellestirdik yani bir func atayabiliriz fakar bu func variable ismi farketmeksizin 
+// 2 parametre alicak number olucak bunlar, sonra returnu de number olucak; boyle bir func olmak zorunda 
+
+combineValues = add;
+// combineValues = printResult; burada hata veriyor cunku number return u yok;
+
+console.log(combineValues(8, 8));
