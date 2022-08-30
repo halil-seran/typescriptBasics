@@ -1,29 +1,17 @@
-function add(n1: number, n2: number) {
-  return n1 + n2;
+let userInput: unknown; //we can store any value;
+let userName: string;
+
+userInput = 5;
+userInput = "halil";
+// userName = userInput; if we use any at first line, this line wouldnt gives an error
+// any unknown un bir ust kumesi
+
+if (typeof userInput === "string") {
+  userName = userInput; // if we use if check then no error
 }
 
-function printResult(num: number): void {
-  // void means this func doesnt have return statement
-  console.log("Result: " + num);
+function generateError(message: string, code: number): never {
+  throw { message: message, errorCode: code };
 }
 
-function printResult2(num: number): undefined {
-  // this is very rare, almost same with upside func.
-  //
-  console.log("Result: " + num);
-  return;
-}
-
-printResult(add(5, 12));
-
-//let value: undefined; // undefined is also an variable
-
-// let combineValues: Function;
-let combineValues: (a: number, b: number) => number;
-// burada combineValuesi ozellestirdik yani bir func atayabiliriz fakar bu func variable ismi farketmeksizin 
-// 2 parametre alicak number olucak bunlar, sonra returnu de number olucak; boyle bir func olmak zorunda 
-
-combineValues = add;
-// combineValues = printResult; burada hata veriyor cunku number return u yok;
-
-console.log(combineValues(8, 8));
+generateError("an Error!", 332);
